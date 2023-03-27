@@ -1,0 +1,24 @@
+<%= turbo_frame_tag answer do %>
+  <ul class="answer__block" data-controller="sortable" data-sortable-handle-value=".handle">
+    <li class="answer__title d-flex justify-content-between align-items-center handle"> 
+      <div>
+        <h3><%= answer.answer %></h3>
+      </div>
+
+      <div class="answer_actions">
+        <ul class="p-0 m-0">
+          <li> 
+            <%= button_to [quiz, question, answer],method: :delete, form: { data: { turbo_frame: "_top" } }, class: "btn btn--light" do %>
+             <i class="bi bi-trash3"></i>
+            <% end %>
+          </li>
+          <li> 
+            <%= link_to [:edit, quiz, question, answer], form: { data: { turbo_frame: "_top" } }, class: "btn btn--light" do %>
+              <i class="bi bi-pencil-square"></i>
+            <% end %>
+          </li>
+        </ul>
+      </div>
+    </li>
+  </ul>
+<% end %>

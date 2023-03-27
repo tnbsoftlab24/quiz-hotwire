@@ -1,0 +1,11 @@
+<main class="container">
+  <%= link_to sanitize("&larr; Back to quizzes"), quizzes_path %>
+
+  <div class="header">
+    <h1>New Quiz</h1>
+  </div>
+  
+  <%= turbo_frame_tag @quiz do %>
+    <%= render "form", quiz: @quiz %>
+  <% end %>
+</main>

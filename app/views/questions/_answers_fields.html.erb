@@ -1,0 +1,13 @@
+<div class="nested-form-wrapper" data-new-record="<%= f.object.new_record? %>">
+  <div class="row">
+    <div class="col-md-8">
+      <%= f.label :description %>
+      <%= f.text_field :answer, class:"form-control" %>
+    </div>
+    <div class="col-md-4">
+      <button type="button"  class="btn " data-action="nested-form#remove"> Delete  <i class="bi bi-trash3"></i></button>
+    </div>
+  </div>
+
+  <%= f.hidden_field :_destroy %>
+</div>

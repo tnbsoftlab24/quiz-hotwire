@@ -1,0 +1,41 @@
+<%= form_for [quiz,question], html: { class: "form" } do |f| %>
+  <% if question.errors.any? %>
+    <%= form_error_notification(question) %>
+  <% end %>
+
+  <div class="new__question_input">
+    <div class="row align-items-center mb-4">
+      <div class="col-md-8">
+        <%= f.text_field :question, class: 'form-control p-2', autofocus: true %>
+
+        <div class="row">
+          <h4><%= f.label :questions_answers, class:"my-4" %></h4>
+          <div class="mb-3 col-md-12" data-controller="nested-form" data-nested-form-wrapper-selector-value=".nested-form-wrapper-result">
+              <template data-nested-form-target="template">
+                <%= f.fields_for :answers, Answer.new, child_index: 'NEW_RECORD' do |answer| %>
+                  <%= render "answers_fields", f: answer %>
+                <% end %>
+              </template>
+      
+              <%= f.fields_for :answers do |answer| %>
+                <%= render "answers_fields", f: answer %>
+              <% end %>
+      
+              <!-- Inserted elements will be injected before that target. -->
+              <div data-nested-form-target="target"></div>
+      
+              <button type="button" class="btn btn--primary shadow m-2 rounded text-white" data-action="nested-form#add">Add Response</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <%= button_tag(type: "submit", class: "btn btn-success") do %>
+          <i class="bi bi-check2"></i>
+        <% end %>
+        <%= link_to quizzes_path(@quiz), class: "btn btn--primary text-white" do %>
+          Cancel
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

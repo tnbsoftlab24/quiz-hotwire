@@ -1,0 +1,8 @@
+<%# Step 1: remove the form %>
+<%= turbo_stream.remove @question %>
+
+
+  <%= turbo_stream.prepend "questions" do %>
+    <%= render @question, quiz: @quiz %>
+  <% end %>
+

@@ -1,0 +1,48 @@
+<div class="container single__course my-2">
+  <%= link_to sanitize("&larr; Retourner au quiz"), quizzes_path, class:"--back" %>
+  <div class="header mt-2 mb-4 d-flex align-items-center justify-content-between">
+    <div>
+      <h1>
+        <%= @quiz.title %>
+      </h1>
+    </div>
+    <div>
+      <%= link_to "New question", new_quiz_question_path(@quiz), 
+        class: "btn btn--primary text-white",
+        data: { turbo_frame: dom_id(Quiz.new) }
+      %>
+    </div>
+  </div>
+
+ 
+  <%= turbo_frame_tag "questions" do %>
+    <%= turbo_frame_tag Question.new %>
+    <%= render @questions, quiz: @quiz %>
+  <% end %>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

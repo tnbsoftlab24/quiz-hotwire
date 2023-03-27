@@ -1,0 +1,16 @@
+<%= form_for [quiz,question,answer], html: { class: "form" } do |f| %>
+
+  <%= form_error_notification(answer) %>
+
+  <div class="row my-4">
+    <div class="col-md-8">
+      <%= f.text_field :answer, class: 'form-control', autofocus: true %>
+    </div>
+    <div class="col-md-4">
+      <div class="answer__actions mr-auto">
+        <%= link_to "Cancel", quiz_path(quiz), class: "btn btn--primary text-white mr-2" %>
+        <%= f.submit class: "btn btn-success" %>
+      </div>
+    </div>
+  </div>
+<% end %>

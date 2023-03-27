@@ -1,0 +1,3 @@
+<%= turbo_stream.replace @answer do %>
+  <%= render @answer, quiz: @quiz, question: @question %>
+<% end %>

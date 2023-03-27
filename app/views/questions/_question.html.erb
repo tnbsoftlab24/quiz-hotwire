@@ -1,0 +1,38 @@
+<%= turbo_frame_tag question do %>
+  <div class="question my-6">
+    <%= turbo_frame_tag dom_id(question, :edit) do %>
+      <div class="question__header shadow mx-0 px-4 py-2 my-2 rounded d-flex justify-content-between align-items-center my-4">
+        <h2 class="__title"><%= question.question %> </h2>
+        <ul class="question__actions d-inline-flex">
+          <li class=""> 
+            <%= link_to  [:edit, quiz, question],class: "btn btn-success text-white shadow m-2 rounded" do %>
+             Edit <i class="bi bi-pencil-square"></i>
+            <% end %>
+          </li>
+          <li class="">
+            <%= link_to [quiz, question],method: :delete, form: {data: { turbo_confirm: "Are you sure?" }}, class: "btn btn--primary shadow m-2 rounded text-white shadow m-2 rounded" do %>
+              Delete  <i class="bi bi-trash3"></i>
+            <% end %>
+          </li>
+        </ul>
+      </div>
+    <% end %>
+   
+    <div class="answer__body shadow mx-0 p-2 my-2 rounded bg-white p-4">
+      <%= turbo_frame_tag nested_dom_id(question, "answers") do %>
+        <%= render question.answers, quiz: quiz, question: question %>
+      <% end %>
+
+      <%= turbo_frame_tag nested_dom_id(question, Answer.new) %>
+
+      <div class="add-answer__footer">
+        <div class="new-answer">
+          <%#= link_to "New reponse", 
+          [:new,  quiz, question, :answer],
+          data: { turbo_frame: nested_dom_id(question, Answer.new) },
+          class: "btn btn--primary my-4" %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

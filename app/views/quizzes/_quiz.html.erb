@@ -1,0 +1,9 @@
+<%= turbo_frame_tag quiz do %>
+  <div class="contact">
+    <%= link_to quiz.title, quiz_path(quiz), data: { turbo_frame: "_top" } %>
+    <div class="contact__actions">
+      <%= button_to "Delete",quiz_path(quiz), method: :delete,class: "btn btn--light" %>
+      <%= link_to "Edit",edit_quiz_path(quiz), class: "btn btn--light" %>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,9 @@
+<%= link_to sanitize("&larr; Back to quiz"), quiz_path(@quiz) %>
+
+<div class="header">
+  <h1>Edit Title</h1>
+</div>
+<%= turbo_frame_tag dom_id(@question, :edit) do %>
+<%#= turbo_frame_tag @question do %>
+  <%= render "form", quiz: @quiz, question: @question %>
+<% end %>

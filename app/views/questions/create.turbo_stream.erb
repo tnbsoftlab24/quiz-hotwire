@@ -1,0 +1,14 @@
+<%# Step 1: remove the form from the quizs#index page %>
+<%#= turbo_stream.update Chapter.new, "" %>
+<%= turbo_stream.update @quiz.questions.build, "" %>
+
+<%# Step 2: add the date at the right place %>
+<% if previous_question = @question.previous_question %>
+  <%= turbo_stream.after previous_question do %>
+    <%= render @question, quiz: @quiz %>
+  <% end %>
+<% else %>
+  <%= turbo_stream.prepend "questions" do %>
+    <%= render @question, quiz: @quiz %>
+  <% end %>
+<% end %>
